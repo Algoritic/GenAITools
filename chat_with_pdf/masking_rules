@@ -1,0 +1,67 @@
+# Masking Rules for Sensitive Data
+
+# 1. IC Number
+# Pattern: Format DDMMYYXXXXXX
+# Example: 011020060987
+# Masked: 01XXXXXXXXXX
+(\d)\d{11} -> \1XXXXXXXXXXX
+
+# 2. Passport Number
+# Pattern: Format AXXXXXXXX
+# Example: A12345678
+# Masked: AXXXXXXXX
+[A-Z]\d{8} -> AXXXXXXXX
+
+# 3. Driver’s License Number
+# Pattern: Format A01XXXXXXXXXX
+# Example: A01234567890
+# Masked: AXXXXXXXXXXX
+[A-Z]\d{12} -> AXXXXXXXXXXX
+
+# 4. Phone Number
+# Pattern: Format (e.g., +60 1x-xxx xxxx, +60 11-xxxx xxxx, +60 3-xxxx xxxx, +60 8x-xxx xxx, +60 x-xxx xxxx, 01x-xxx xxxx, 011-xxxx xxxx, 03-xxxx xxxx, 08x-xxx xxx, 0x-xxx xxxx)
+# Example: +60 1x-xxx xxxx, +60 11-xxxx xxxx, +60 3-xxxx xxxx, +60 8x-xxx xxx, +60 x-xxx xxxx, 01x-xxx xxxx, 011-xxxx xxxx, 03-xxxx xxxx, 08x-xxx xxx, 0x-xxx xxxx
+# Masked: 01XXXXXXXXX
+(?:\+\d{2} \d{1,2}-\d{3,4} \d{4}|\d{2}-\d{8}|\+\d{2}-\d{2}-\d{7,8}|\d{2}-\d{4}-\d{4}|\d{3}-\d{3}-\d{4}|\d{9,10}) -> 01XXXXXXXXX
+
+# 5. Email Address
+# Pattern: Format user@domain.com
+# Example: john.doe@example.com
+# Masked: XXXX@XXXX.XXX
+[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,} -> XXXX@XXXX.XXX
+
+# 6. Bank Account Number
+# Pattern: Format 123456789012
+# Example: 123456789012
+# Masked: XXXXXXXXXXXX
+\d{12} -> XXXXXXXXXXXX
+
+# 7. Credit Card Number
+# Pattern: Format 1234-5678-9012-3456
+# Example: 1234-5678-9012-3456
+# Masked: 1234-XXXX-XXXX-3456
+\d{4}-\d{4}-\d{4}-\d{4} -> 1234-XXXX-XXXX-3456
+
+# 8. Medical Record Number
+# Pattern: Format MRNXXXXXX
+# Example: MRN123456
+# Masked: MRNXXXXXX
+MRN\d{6} -> MRNXXXXXX
+
+# 9. Residential Address
+# Pattern: Format 123 Street Name, City, Postal Code
+# Example: 123 Main St, Kuala Lumpur, 12345
+# Masked: 123 XXXX, XXXX Kuala Lumpur
+\d{3} \w+ \d{5}, \d{4} \w+ -> 123 XXXX, XXXX Kuala Lumpur
+
+# 10. NRIC Number (for non-Malaysian citizens)
+# Pattern: Format AXXXXXXX
+# Example: A1234567
+# Masked: AXXXXXXX
+[A-Z]\d{7}[A-Z] -> AXXXXXXX
+
+# 11. Tax Identification Number (TIN)
+# Pattern: Format T01XXXXXXXXXX
+# Example: T01012345678
+# Masked: TXXXXXXXXXXX
+T\d{12} -> TXXXXXXXXXXX

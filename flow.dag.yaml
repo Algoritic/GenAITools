@@ -1,0 +1,81 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+sample: ${file:sample.json}
+inputs:
+  index_name:
+    type: string
+    default: mbb-mss-ea-chatbot-final
+  chat_history:
+    type: list
+    default: []
+  question:
+    type: string
+    is_chat_input: true
+    default: Can you explain the application integration process?
+  config:
+    type: object
+    default:
+      EMBEDDING_MODEL_DEPLOYMENT_NAME: model-maygpt-embedding-uat-001
+      CHAT_MODEL_DEPLOYMENT_NAME: model-maygpt-llm-gpt-4o-uat-001
+      PROMPT_TOKEN_LIMIT: 2000
+      MAX_COMPLETION_TOKENS: 3000
+      VERBOSE: true
+      CHUNK_SIZE: 1024
+      CHUNK_OVERLAP: 64
+      TEMPERATURE: 0
+outputs:
+  answer:
+    type: string
+    is_chat_output: true
+    reference: ${qna_tool.output}
+  context:
+    type: string
+    reference: ${find_context_tool.output.context}
+nodes:
+  - name: setup_env
+    type: python
+    source:
+      type: code
+      path: setup_env.py
+    inputs:
+      connection: my_multi_connection
+      config: ${inputs.config}
+  - name: find_context_tool
+    type: python
+    source:
+      type: code
+      path: find_context_tool.py
+    inputs:
+      question: ${inputs.question}
+      index_path: ${inputs.index_name}
+      env_ready_signal: ${setup_env.output}
+  - name: data_masking_tool
+    type: python
+    source:
+      type: code
+      path: data_masking_tool.py
+    inputs:
+      text: ${find_context_tool.output.prompt}
+    outputs:
+      masked_text:
+        type: string
+  - name: qna_tool
+    type: python
+    source:
+      type: code
+      path: qna_tool.py
+    inputs:
+      prompt: ${data_masking_tool.output.masked_text}
+      history: ${inputs.chat_history}
+    outputs:
+      answer:
+        type: string
+  # - name: qna_tool
+  #   type: python
+  #   source:
+  #     type: code
+  #     path: qna_tool.py
+  #   inputs:
+  #     prompt: ${data_masking_tool.output.masked_text}
+  #     history: ${inputs.chat_history}

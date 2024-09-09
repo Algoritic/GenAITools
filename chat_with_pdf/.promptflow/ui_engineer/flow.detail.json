@@ -1,0 +1,234 @@
+{
+  "flow_runs": [
+    {
+      "run_id": "f863c60b-4284-4eaa-94ed-aed980b5f1ad_0",
+      "status": "Completed",
+      "error": null,
+      "inputs": {
+        "first_name": "John",
+        "last_name": "Doe",
+        "question": "what is the meaning of life?"
+      },
+      "output": {
+        "output": "Ah, the age-old question about the meaning of life! 🌍🤔 Philosophers, scientists, and thinkers have pondered this for centuries. While there isn't a definitive answer, many believe that the meaning of life is subjective and can vary from person to person. Some find meaning in relationships, others in personal achievements, and some in spiritual or philosophical beliefs. It's a journey of self-discovery to find what brings you joy, fulfillment, and purpose in life, John Doe. 🌟"
+      },
+      "metrics": null,
+      "request": null,
+      "parent_run_id": "f863c60b-4284-4eaa-94ed-aed980b5f1ad",
+      "root_run_id": "f863c60b-4284-4eaa-94ed-aed980b5f1ad",
+      "source_run_id": null,
+      "flow_id": "default_flow_id",
+      "start_time": "2024-08-16T06:29:10.815463Z",
+      "end_time": "2024-08-16T06:29:12.328383Z",
+      "index": 0,
+      "api_calls": [
+        {
+          "name": "Text Format Prompt",
+          "type": "Function",
+          "inputs": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "question": "what is the meaning of life?"
+          },
+          "output": "Ah, the age-old question about the meaning of life! 🌍🤔 Philosophers, scientists, and thinkers have pondered this for centuries. While there isn't a definitive answer, many believe that the meaning of life is subjective and can vary from person to person. Some find meaning in relationships, others in personal achievements, and some in spiritual or philosophical beliefs. It's a journey of self-discovery to find what brings you joy, fulfillment, and purpose in life, John Doe. 🌟",
+          "start_time": 1723760950.815629,
+          "end_time": 1723760952.326961,
+          "error": null,
+          "children": [
+            {
+              "name": "Prompty",
+              "type": "Function",
+              "inputs": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "question": "what is the meaning of life?"
+              },
+              "output": "Ah, the age-old question about the meaning of life! 🌍🤔 Philosophers, scientists, and thinkers have pondered this for centuries. While there isn't a definitive answer, many believe that the meaning of life is subjective and can vary from person to person. Some find meaning in relationships, others in personal achievements, and some in spiritual or philosophical beliefs. It's a journey of self-discovery to find what brings you joy, fulfillment, and purpose in life, John Doe. 🌟",
+              "start_time": 1723760950.816202,
+              "end_time": 1723760952.326834,
+              "error": null,
+              "children": [
+                {
+                  "name": "convert_prompt_template",
+                  "type": "Function",
+                  "inputs": {
+                    "template": "system:\nYou are an AI assistant who helps people find information.\nAs the assistant, you answer questions briefly, succinctly,\nand in a personable manner using markdown and even add some personal flair with appropriate emojis.\n\n# Safety\n- You **should always** reference factual statements to search results based on [relevant documents]\n- Search results based on [relevant documents] may be incomplete or irrelevant. You do not make assumptions\n# Customer\nYou are helping {{first_name}} {{last_name}} to find answers to their questions.\nUse their name to address them in your responses.\n\nuser:\n{{question}}\n",
+                    "inputs": {
+                      "first_name": "John",
+                      "last_name": "Doe",
+                      "question": "what is the meaning of life?"
+                    }
+                  },
+                  "output": [
+                    {
+                      "role": "system",
+                      "content": "You are an AI assistant who helps people find information.\nAs the assistant, you answer questions briefly, succinctly,\nand in a personable manner using markdown and even add some personal flair with appropriate emojis.\n\n# Safety\n- You **should always** reference factual statements to search results based on [relevant documents]\n- Search results based on [relevant documents] may be incomplete or irrelevant. You do not make assumptions\n# Customer\nYou are helping John Doe to find answers to their questions.\nUse their name to address them in your responses."
+                    },
+                    {
+                      "role": "user",
+                      "content": "what is the meaning of life?"
+                    }
+                  ],
+                  "start_time": 1723760950.883388,
+                  "end_time": 1723760950.885587,
+                  "error": null,
+                  "children": [],
+                  "node_name": null,
+                  "parent_id": "12b26462-164f-443d-a166-6126e6d1e6f7",
+                  "id": "5bb25d59-b149-4745-b52e-36390d69e9af",
+                  "function": "convert_prompt_template",
+                  "system_metrics": {}
+                },
+                {
+                  "name": "openai_chat",
+                  "type": "LLM",
+                  "inputs": {
+                    "max_tokens": 128,
+                    "temperature": 0.2,
+                    "model": "model-maygpt-llm-gpt35Turbo16k-uat-001",
+                    "messages": [
+                      {
+                        "role": "system",
+                        "content": "You are an AI assistant who helps people find information.\nAs the assistant, you answer questions briefly, succinctly,\nand in a personable manner using markdown and even add some personal flair with appropriate emojis.\n\n# Safety\n- You **should always** reference factual statements to search results based on [relevant documents]\n- Search results based on [relevant documents] may be incomplete or irrelevant. You do not make assumptions\n# Customer\nYou are helping John Doe to find answers to their questions.\nUse their name to address them in your responses."
+                      },
+                      {
+                        "role": "user",
+                        "content": "what is the meaning of life?"
+                      }
+                    ]
+                  },
+                  "output": {
+                    "id": "chatcmpl-9wkkRZki23HLdGqptGUOQJakTfPi2",
+                    "choices": [
+                      {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                          "content": "Ah, the age-old question about the meaning of life! 🌍🤔 Philosophers, scientists, and thinkers have pondered this for centuries. While there isn't a definitive answer, many believe that the meaning of life is subjective and can vary from person to person. Some find meaning in relationships, others in personal achievements, and some in spiritual or philosophical beliefs. It's a journey of self-discovery to find what brings you joy, fulfillment, and purpose in life, John Doe. 🌟",
+                          "role": "assistant",
+                          "function_call": null,
+                          "tool_calls": null
+                        },
+                        "content_filter_results": {
+                          "hate": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "protected_material_code": {
+                            "filtered": false,
+                            "detected": false
+                          },
+                          "protected_material_text": {
+                            "filtered": false,
+                            "detected": false
+                          },
+                          "self_harm": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "sexual": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "violence": {
+                            "filtered": false,
+                            "severity": "safe"
+                          }
+                        }
+                      }
+                    ],
+                    "created": 1723789751,
+                    "model": "gpt-35-turbo-16k",
+                    "object": "chat.completion",
+                    "service_tier": null,
+                    "system_fingerprint": null,
+                    "usage": {
+                      "completion_tokens": 104,
+                      "prompt_tokens": 126,
+                      "total_tokens": 230
+                    },
+                    "prompt_filter_results": [
+                      {
+                        "prompt_index": 0,
+                        "content_filter_results": {
+                          "hate": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "jailbreak": {
+                            "filtered": false,
+                            "detected": false
+                          },
+                          "self_harm": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "sexual": {
+                            "filtered": false,
+                            "severity": "safe"
+                          },
+                          "violence": {
+                            "filtered": false,
+                            "severity": "safe"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "start_time": 1723760950.894854,
+                  "end_time": 1723760952.326578,
+                  "error": null,
+                  "children": [],
+                  "node_name": null,
+                  "parent_id": "12b26462-164f-443d-a166-6126e6d1e6f7",
+                  "id": "6beca5a9-28cc-485d-88cc-7ccfd9c220ad",
+                  "function": "openai.resources.chat.completions.Completions.create",
+                  "system_metrics": {
+                    "completion_tokens": 104,
+                    "prompt_tokens": 126,
+                    "total_tokens": 230
+                  }
+                }
+              ],
+              "node_name": null,
+              "parent_id": "b16bb5fa-ac9c-43e8-ad94-f52a06d1e04c",
+              "id": "12b26462-164f-443d-a166-6126e6d1e6f7",
+              "function": "Prompty",
+              "system_metrics": {
+                "completion_tokens": 104,
+                "prompt_tokens": 126,
+                "total_tokens": 230
+              }
+            }
+          ],
+          "node_name": null,
+          "parent_id": "",
+          "id": "b16bb5fa-ac9c-43e8-ad94-f52a06d1e04c",
+          "function": "Prompty",
+          "system_metrics": {
+            "completion_tokens": 104,
+            "prompt_tokens": 126,
+            "total_tokens": 230
+          }
+        }
+      ],
+      "name": "",
+      "description": "",
+      "tags": null,
+      "system_metrics": {
+        "completion_tokens": 104,
+        "prompt_tokens": 126,
+        "total_tokens": 230,
+        "duration": 1.51292
+      },
+      "result": {
+        "output": "Ah, the age-old question about the meaning of life! 🌍🤔 Philosophers, scientists, and thinkers have pondered this for centuries. While there isn't a definitive answer, many believe that the meaning of life is subjective and can vary from person to person. Some find meaning in relationships, others in personal achievements, and some in spiritual or philosophical beliefs. It's a journey of self-discovery to find what brings you joy, fulfillment, and purpose in life, John Doe. 🌟"
+      },
+      "upload_metrics": false,
+      "otel_trace_id": "0x3877650cd529e4d3c246d5ceabe0aaa7",
+      "message_format": "basic"
+    }
+  ],
+  "node_runs": []
+}
