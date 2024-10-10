@@ -1,0 +1,9 @@
+pandas
+streamlit
+chardet
+python-dotenv
+langchain
+langchain-community
+langchain-core
+langchain-openai
+openai
